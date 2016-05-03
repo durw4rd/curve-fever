@@ -1,9 +1,14 @@
 import React from 'react';
+import InfoComponent from './components/InfoComponent'
+import AppBar from 'material-ui/lib/app-bar';
 
 class App extends React.Component {
     render() {
         return (
-            <h1>Hello World!</h1>
+            <div>
+              <AppBar title="Curve Fever"/>
+              <InfoComponent />
+            </div>
         );
     }
 }
