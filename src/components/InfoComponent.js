@@ -1,19 +1,36 @@
 import React from 'react';
+import Colors from 'material-ui/lib/styles/colors';
 
 const infoStyle = {
-  display: "inline",
+  fontFamily: "Helvetica",
+  fontSize: "20px",
   width: "500px",
-  margin: "auto"
+  margin: "auto",
+  textAlign: "center",
+  padding: "15px"
 };
+
+const iconStyle = {
+  fontFamily: "Material Icons",
+  fontSize: "24px",
+  color: Colors.purple500,
+  verticalAlign: "bottom"
+}
+
+const iconStyle2 = {
+  fontFamily: "Material Icons",
+  fontSize: "24px",
+  color: Colors.greenA200,
+  verticalAlign: "bottom"
+}
 
 class InfoComponent extends React.Component {
   render(){
     return (
-      <div style={infoStyle}>
-        <h1>Curve Fever</h1>
-        Player One: XXX
-        |
-        Player Two: XXX
+      <div>
+        <p style={infoStyle}>
+          <i style={iconStyle} className="material-icons">account_box</i> Player One: XXX | <i style={iconStyle2} className="material-icons">account_circle</i> Player Two: XXX
+        </p>
       </div>
     );
   }
