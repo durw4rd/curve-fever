@@ -6,13 +6,16 @@ import Theme from './lib/Theme';
 import AppBarComponent from './components/AppBarComponent';
 import InfoComponent from './components/InfoComponent';
 import NewPlayerComponent from './components/NewPlayerComponent';
+import CanvasComponent from './components/CanvasComponent';
 
 class App extends React.Component {
 
   constructor() {
   super();
+
   this.games = new GameModel();
   this.utils = new Utils();
+
   let playerStorage = this.utils.store("curvefever.player");
   if (playerStorage.length === 0) {
     playerStorage = null;
@@ -31,7 +34,6 @@ class App extends React.Component {
     this.utils.store("curvefever.player", player);
   }
 
-
   getChildContext() {
       return {
         muiTheme: ThemeManager.getMuiTheme(Theme),
@@ -44,6 +46,7 @@ class App extends React.Component {
         <AppBarComponent />
         <InfoComponent />
         <NewPlayerComponent onCreate={this.setPlayer.bind(this)} />
+        <CanvasComponent />
       </div>
     );
   }
