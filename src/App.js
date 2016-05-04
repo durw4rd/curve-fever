@@ -11,19 +11,23 @@ import CanvasComponent from './components/CanvasComponent';
 class App extends React.Component {
 
   constructor() {
-  super();
+    super();
 
-  this.games = new GameModel();
-  this.utils = new Utils();
+    this.utils = new Utils();
 
-  let playerStorage = this.utils.store("curvefever.player");
-  if (playerStorage.length === 0) {
-    playerStorage = null;
-  }
+    let playerStorage = this.utils.store("curvefever.player");
+    if (playerStorage.length === 0) {
+      playerStorage = null;
+    }
+
     this.state = {
-      games: [],
-      currentGame: null,
-      currentPlayer: playerStorage,
+      currentPlayer: playerStorage
+    };
+  }
+
+  getChildContext() {
+    return {
+      muiTheme: ThemeManager.getMuiTheme(Theme),
     };
   }
 
@@ -33,12 +37,6 @@ class App extends React.Component {
     });
     this.utils.store("curvefever.player", player);
   }
-
-  getChildContext() {
-      return {
-        muiTheme: ThemeManager.getMuiTheme(Theme),
-      };
-    }
 
   render() {
     return (
