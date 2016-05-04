@@ -1,4 +1,29 @@
 import React from 'react';
+import RaisedButton from 'material-ui/lib/raised-button';
+
+const buttonStyle = {
+ margin: 12,
+ verticalAlign: "middle"
+};
+
+const formStyle = {
+  width: "500px",
+  margin: "auto",
+  textAlign: "center"
+}
+
+const p2Style = {
+  fontFamily: "Helvetica",
+  fontSize: "20px",
+  color: "#333",
+  padding: "2px",
+  verticalAlign: "middle",
+  textAlign: "center",
+}
+
+const pad = {
+  padding: "15px"
+}
 
 class NewPlayerComponent extends React.Component {
 
@@ -9,19 +34,15 @@ class NewPlayerComponent extends React.Component {
       this.props.onCreate(newPlayer);
       this.refs.playerName.value = "";
     }
+
   render() {
     return(
-      <div>
-        <form onSubmit={this.createPlayer.bind(this)}>
-          <div>
-            <label>Player Name:</label>
-            <input type="text" ref="playerName" placeholder="What's your name?"/>
-          </div>
-          <div>
-            <input type="submit" value="Save"/>
-          </div>
-        </form>
-      </div>
+      <form style={formStyle}>
+        <div style={pad}>
+          <input style={p2Style} type="text" ref="playerName" placeholder="Enter Player's Name"/>
+          <RaisedButton onClick={this.createPlayer.bind(this)} label="Save" primary={true} style={buttonStyle} />
+        </div>
+      </form>
     );
   }
 }

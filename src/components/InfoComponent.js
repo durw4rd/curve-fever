@@ -1,5 +1,6 @@
 import React from 'react';
 import Colors from 'material-ui/lib/styles/colors';
+import NewPlayerComponent from './NewPlayerComponent';
 
 const infoStyle = {
   fontFamily: "Helvetica",
@@ -25,7 +26,9 @@ const iconStyle2 = {
 }
 
 class InfoComponent extends React.Component {
+
   render(){
+    let component = this;
     return (
       <div>
         <p style={infoStyle}>
