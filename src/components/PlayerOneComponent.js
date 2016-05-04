@@ -25,25 +25,25 @@ const pad = {
   padding: "15px"
 }
 
-class NewPlayerComponent extends React.Component {
+class PlayerOneComponent extends React.Component {
 
-  createPlayer(event) {
+  createPlayer1(event) {
       event.preventDefault();
-      console.log("Create Player Called!");
-      let newPlayer = this.refs.playerName.value;
-      this.props.onCreate(newPlayer);
-      this.refs.playerName.value = "";
+      console.log("Create Player1 Called!");
+      let newPlayer1 = this.refs.player1Name.value;
+      this.props.onCreate(newPlayer1);
+      this.refs.player1Name.value = "";
     }
 
   render() {
     return(
       <form style={formStyle}>
         <div style={pad}>
-          <input style={p2Style} type="text" ref="playerName" placeholder="Enter Player's Name"/>
-          <RaisedButton onClick={this.createPlayer.bind(this)} label="Save" primary={true} style={buttonStyle} />
+          <input style={p2Style} type="text" ref="player1Name" placeholder="Enter Player 1"/>
+          <RaisedButton onClick={this.createPlayer1.bind(this)} label="Save" primary={true} style={buttonStyle} />
         </div>
       </form>
     );
   }
 }
-export default NewPlayerComponent;
+export default PlayerOneComponent;
