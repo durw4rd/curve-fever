@@ -26,12 +26,13 @@ const iconStyle2 = {
 }
 
 class InfoComponent extends React.Component {
+
   render(){
     let component = this;
     return (
       <div>
         <p style={infoStyle}>
-          <i style={iconStyle} className="material-icons">account_box</i> Player One: {component.props.currentPlayer} | <i style={iconStyle2} className="material-icons">account_circle</i> Player Two: XXX
+          <i style={iconStyle} className="material-icons">account_box</i> Player One: XXX | <i style={iconStyle2} className="material-icons">account_circle</i> Player Two: XXX
         </p>
       </div>
     );

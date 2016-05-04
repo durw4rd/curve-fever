@@ -18,7 +18,11 @@ const p2Style = {
   color: "#333",
   padding: "2px",
   verticalAlign: "middle",
-  textAlign: "center"
+  textAlign: "center",
+}
+
+const pad = {
+  padding: "15px"
 }
 
 class NewPlayerComponent extends React.Component {
@@ -34,7 +38,7 @@ class NewPlayerComponent extends React.Component {
   render() {
     return(
       <form style={formStyle}>
-        <div>
+        <div style={pad}>
           <input style={p2Style} type="text" ref="playerName" placeholder="Enter Player's Name"/>
           <RaisedButton onClick={this.createPlayer.bind(this)} label="Save" primary={true} style={buttonStyle} />
         </div>
