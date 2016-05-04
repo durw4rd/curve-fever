@@ -7,13 +7,14 @@ import Colors from 'material-ui/lib/styles/colors';
 import AppBarComponent from './components/AppBarComponent';
 // import InfoComponent from './components/InfoComponent';
 import RaisedButton from 'material-ui/lib/raised-button';
-import NewPlayerComponent from './components/NewPlayerComponent';
+import PlayerOneComponent from './components/PlayerOneComponent';
+import PlayerTwoComponent from './components/PlayerTwoComponent';
 import CanvasComponent from './components/CanvasComponent';
 
 const infoStyle = {
   fontFamily: "Helvetica",
   fontSize: "20px",
-  width: "500px",
+  width: "700px",
   margin: "auto",
   textAlign: "center",
   padding: "15px",
@@ -31,6 +32,21 @@ const iconStyle2 = {
   fontSize: "24px",
   color: Colors.greenA200,
   verticalAlign: "bottom"
+}
+
+const iconStyle3 = {
+  fontFamily: "Material Icons",
+  fontSize: "36px",
+  color: Colors.purple500,
+  verticalAlign: "middle",
+  letterSpacing: "-5px"
+}
+
+const iconStyle4 = {
+  fontFamily: "Material Icons",
+  fontSize: "36px",
+  color: Colors.greenA200,
+  verticalAlign: "top"
 }
 
 const buttonStyle = {
@@ -123,19 +139,21 @@ class App extends React.Component {
         </div>
 
         { this.state.playerOne === null &&
-          <NewPlayerComponent onCreate={this.setPlayerOne.bind(this)} /> }
+          <PlayerOneComponent onCreate={this.setPlayerOne.bind(this)} /> }
 
         { this.state.playerOne !== null &&
           <div>
-            <div style={infoStyle}>Long time no see, {this.state.playerOne}! <RaisedButton onClick={this.clearPlayerOne.bind(this)} label="Log Out" secondary={true} style={buttonStyle}/> </div>
+            <div style={infoStyle}>Yo, {this.state.playerOne}! Your keys are: <i style={iconStyle3} className="material-icons">keyboard_arrow_down keyboard_arrow_left keyboard_arrow_right keyboard_arrow_up</i>.
+            <RaisedButton onClick={this.clearPlayerOne.bind(this)} label="Log Out" secondary={true} style={buttonStyle}/> </div>
           </div>}
 
         { this.state.playerTwo === null &&
-          <NewPlayerComponent onCreate={this.setPlayerTwo.bind(this)} /> }
+          <PlayerTwoComponent onCreate={this.setPlayerTwo.bind(this)} /> }
 
         { this.state.playerTwo !== null &&
           <div>
-            <div style={infoStyle}>Long time no see, {this.state.playerTwo}! <RaisedButton onClick={this.clearPlayerTwo.bind(this)} label="Log Out" secondary={true} style={buttonStyle}/> </div>
+            <div style={infoStyle}>Yo, {this.state.playerTwo}! Your keys are: <i style={iconStyle4} className="material-icons">S A D W</i>.
+            <RaisedButton onClick={this.clearPlayerTwo.bind(this)} label="Log Out" primary={true} style={buttonStyle}/> </div>
           </div>}
 
         <CanvasComponent />
