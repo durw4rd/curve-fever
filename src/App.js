@@ -51,7 +51,8 @@ class App extends React.Component {
     }
 
     this.state = {
-      currentPlayer: playerStorage
+      playerOne: playerStorage,
+      playerTwo: playerStorage
     };
   }
 
@@ -61,51 +62,80 @@ class App extends React.Component {
     };
   }
 
-  setPlayer(player) {
+  setPlayerOne(player) {
     this.setState({
-      currentPlayer: player
+      playerOne: player
+    });
+    this.utils.store("curvefever.player", player);
+  }
+
+  setPlayerTwo(player) {
+    this.setState({
+      playerTwo: player
     });
     this.utils.store("curvefever.player", player);
   }
 
   playerOne() {
-    if (this.state.currentPlayer !== null) {
-      let playerOne = this.state.currentPlayer
+    if (this.state.playerOne !== null) {
+      let playerOne = this.state.playerOne
       return playerOne;
     } else {
       return "XXX";
     }
   }
 
-  clearCurrentPlayer() {
+  playerTwo() {
+    if (this.state.playerTwo !== null) {
+      let playerTwo = this.state.playerTwo
+      return playerTwo;
+    } else {
+      return "XXX";
+    }
+  }
+
+  clearPlayerOne() {
     this.setState({
-      currentPlayer: null
+      playerOne: null
+    });
+  }
+
+  clearPlayerTwo() {
+    this.setState({
+      playerTwo: null
     });
   }
 
   render() {
     let player1 = this.playerOne();
-    // let player2 = this.playerTwo();
+    let player2 = this.playerTwo();
     console.log(this.state);
     console.log(player1);
-    // console.log(player2);
+    console.log(player2);
 
     return (
       <div>
         <AppBarComponent />
         <div>
           <p style={infoStyle}>
-            <i style={iconStyle} className="material-icons">account_box</i> Player One: {player1} | <i style={iconStyle2} className="material-icons">account_circle</i> Player Two: XXX
+            <i style={iconStyle} className="material-icons">account_box</i> Player One: {player1} | <i style={iconStyle2} className="material-icons">account_circle</i> Player Two: {player2}
           </p>
         </div>
 
-        { this.state.currentPlayer === null &&
-          <NewPlayerComponent onCreate={this.setPlayer.bind(this)} /> }
+        { this.state.playerOne === null &&
+          <NewPlayerComponent onCreate={this.setPlayerOne.bind(this)} /> }
 
-        { this.state.currentPlayer !== null &&
+        { this.state.playerOne !== null &&
           <div>
-            <div style={infoStyle}>Long time no see, {this.state.currentPlayer}! <RaisedButton onClick={this.clearCurrentPlayer.bind(this)} label="Log Out" secondary={true} style={buttonStyle}/> </div>
+            <div style={infoStyle}>Long time no see, {this.state.playerOne}! <RaisedButton onClick={this.clearPlayerOne.bind(this)} label="Log Out" secondary={true} style={buttonStyle}/> </div>
+          </div>}
 
+        { this.state.playerTwo === null &&
+          <NewPlayerComponent onCreate={this.setPlayerTwo.bind(this)} /> }
+
+        { this.state.playerTwo !== null &&
+          <div>
+            <div style={infoStyle}>Long time no see, {this.state.playerTwo}! <RaisedButton onClick={this.clearPlayerTwo.bind(this)} label="Log Out" secondary={true} style={buttonStyle}/> </div>
           </div>}
 
         <CanvasComponent />
