@@ -55,6 +55,19 @@ const buttonStyle = {
  verticalAlign: "middle"
 };
 
+const startStyle = {
+ verticalAlign: "middle",
+ width: "150px",
+ height: "50px",
+};
+
+const startBoxStyle = {
+  width: "150px",
+  margin: "auto",
+  marginBottom: "20px",
+  border: "dashed 3px #9C27B0"
+}
+
 class App extends React.Component {
 
   constructor() {
@@ -157,7 +170,10 @@ class App extends React.Component {
             <RaisedButton onClick={this.clearPlayerTwo.bind(this)} label="Log Out" primary={true} style={buttonStyle}/> </div>
           </div>}
 
-        <RulesComponent />
+        { this.state.playerOne !== null && this.state.playerTwo !== null &&
+          <div style={startBoxStyle}>
+            <RaisedButton label="Start!" primary={true} style={startStyle}/>
+          </div>}
 
       </div>
     );
