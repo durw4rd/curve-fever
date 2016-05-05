@@ -157,7 +157,6 @@ class App extends React.Component {
             <RaisedButton onClick={this.clearPlayerTwo.bind(this)} label="Log Out" primary={true} style={buttonStyle}/> </div>
           </div>}
 
-        <CanvasComponent />
         <RulesComponent />
 
       </div>
