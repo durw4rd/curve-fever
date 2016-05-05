@@ -40,7 +40,7 @@ class PlayerTwoComponent extends React.Component {
       <form style={formStyle}>
         <div style={pad}>
           <input style={p2Style} type="text" ref="player2Name" placeholder="Enter Player 2"/>
-          <RaisedButton onClick={this.createPlayer2.bind(this)} label="Save" secondary={true} style={buttonStyle} />
+          <RaisedButton onClick={this.createPlayer2.bind(this)} label="Save" primary={true} style={buttonStyle} />
         </div>
       </form>
     );
