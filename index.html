@@ -138,11 +138,15 @@
         alert('Player 2 wins!');
         clearInterval(gameInterval);
         updateGreenCounter();
+        ctx.clearRect(0, 0, 500, 500);
+        setInterval(function() { startGame()}, 100 );
       }
       if(greenEatSelf != undefined){
         alert('Player 1 wins!');
         clearInterval(gameInterval);
         updatePurpleCounter();
+        ctx.clearRect(0, 0, 500, 500);
+        setInterval(function() { startGame()}, 100 );
       }
 
       //collision
@@ -157,11 +161,15 @@
         alert('Player 2 wins!');
         clearInterval(gameInterval);
         updateGreenCounter();
+        ctx.clearRect(0, 0, 500, 500);
+        setInterval(function() { startGame()}, 100 );
       }
       if(greenEatPurple != undefined){
         alert('Player 1 wins!');
         clearInterval(gameInterval);
         updatePurpleCounter();
+        ctx.clearRect(0, 0, 500, 500);
+        setInterval(function() { startGame()}, 100 );
       }
 
       //hits canvas margins
@@ -169,11 +177,15 @@
         alert('Player 2 wins!');
         clearInterval(gameInterval);
         updateGreenCounter();
+        ctx.clearRect(0, 0, 500, 500);
+        setInterval(function() { startGame()}, 100 );
       }
       if((x2 == 0) || (x2 == 500) || (y2 == 0) || (y2 == 500)){
         alert('Player 1 wins!');
         clearInterval(gameInterval);
         updatePurpleCounter();
+        ctx.clearRect(0, 0, 500, 500);
+        setInterval(function() { startGame()}, 100 );
       }
 
       var object = {x:x, y:y};
