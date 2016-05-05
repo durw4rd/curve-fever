@@ -51,7 +51,7 @@ const iconStyle4 = {
 }
 
 const buttonStyle = {
- margin: 12,
+ margin: 5,
  verticalAlign: "middle"
 };
 
