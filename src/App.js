@@ -10,11 +10,12 @@ import RaisedButton from 'material-ui/lib/raised-button';
 import PlayerOneComponent from './components/PlayerOneComponent';
 import PlayerTwoComponent from './components/PlayerTwoComponent';
 import CanvasComponent from './components/CanvasComponent';
+import RulesComponent from './components/RulesComponent';
 
 const infoStyle = {
   fontFamily: "Helvetica",
   fontSize: "20px",
-  width: "700px",
+  width: "750px",
   margin: "auto",
   textAlign: "center",
   padding: "15px",
@@ -24,14 +25,14 @@ const iconStyle = {
   fontFamily: "Material Icons",
   fontSize: "24px",
   color: Colors.purple500,
-  verticalAlign: "bottom"
+  verticalAlign: "middle"
 }
 
 const iconStyle2 = {
   fontFamily: "Material Icons",
   fontSize: "24px",
   color: Colors.greenA200,
-  verticalAlign: "bottom"
+  verticalAlign: "middle"
 }
 
 const iconStyle3 = {
@@ -97,7 +98,7 @@ class App extends React.Component {
       let playerOne = this.state.playerOne
       return playerOne;
     } else {
-      return "XXX";
+      return "Spot is available!";
     }
   }
 
@@ -106,7 +107,7 @@ class App extends React.Component {
       let playerTwo = this.state.playerTwo
       return playerTwo;
     } else {
-      return "XXX";
+      return "Opportunity waiting for you!";
     }
   }
 
@@ -134,7 +135,7 @@ class App extends React.Component {
         <AppBarComponent />
         <div>
           <p style={infoStyle}>
-            <i style={iconStyle} className="material-icons">account_box</i> Player One: {player1} | <i style={iconStyle2} className="material-icons">account_circle</i> Player Two: {player2}
+            <i style={iconStyle} className="material-icons">gesture</i> <strong>Player One:</strong> {player1} <strong>|</strong> <i style={iconStyle2} className="material-icons">gesture</i> <strong>Player Two:</strong> {player2}
           </p>
         </div>
 
@@ -143,7 +144,7 @@ class App extends React.Component {
 
         { this.state.playerOne !== null &&
           <div>
-            <div style={infoStyle}>Yo, {this.state.playerOne}! Your keys are: <i style={iconStyle3} className="material-icons">keyboard_arrow_down keyboard_arrow_left keyboard_arrow_right keyboard_arrow_up</i>.
+            <div style={infoStyle}>Hey, {this.state.playerOne}! Your keys are: <i style={iconStyle3} className="material-icons">keyboard_arrow_down keyboard_arrow_left keyboard_arrow_right keyboard_arrow_up</i>.
             <RaisedButton onClick={this.clearPlayerOne.bind(this)} label="Log Out" secondary={true} style={buttonStyle}/> </div>
           </div>}
 
@@ -152,11 +153,12 @@ class App extends React.Component {
 
         { this.state.playerTwo !== null &&
           <div>
-            <div style={infoStyle}>Yo, {this.state.playerTwo}! Your keys are: <i style={iconStyle4} className="material-icons">S A D W</i>.
+            <div style={infoStyle}>Hey, {this.state.playerTwo}! Your keys are: <i style={iconStyle4} className="material-icons">S A D W</i>.
             <RaisedButton onClick={this.clearPlayerTwo.bind(this)} label="Log Out" primary={true} style={buttonStyle}/> </div>
           </div>}
 
         <CanvasComponent />
+        <RulesComponent />
 
       </div>
     );

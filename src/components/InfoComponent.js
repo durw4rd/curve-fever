@@ -32,7 +32,7 @@ class InfoComponent extends React.Component {
     return (
       <div>
         <p style={infoStyle}>
-          <i style={iconStyle} className="material-icons">account_box</i> Player One: XXX | <i style={iconStyle2} className="material-icons">account_circle</i> Player Two: XXX
+          <i style={iconStyle} className="material-icons">gesture</i> Player One: XXX | <i style={iconStyle2} className="material-icons">gesture</i> Player Two: XXX
         </p>
       </div>
     );
