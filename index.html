@@ -25,32 +25,36 @@
     var unit = 5;
     //var ctx2 = c.getContext("2d");
 
-    var keyCode = 39;
+    var keyCode = 68;
     var x = 5;
     var y = 250;
     //ctx.moveTo(x,y);
 
     //65 left    83 right   87 up     90 down
-    var keyCode2 = 65;
+    var keyCode2 = 37;
     var x2 = 495;
     var y2 = 250;
     //ctx2.moveTo(x2,y2);
 
     var object = {x:x, y:y};
-    var allObjects = [];
-    allObjects.push(object);
+    var purpleSnake = [];
+    purpleSnake.push(object);
+
+    var object2 = {x:x2, y:y2};
+    var greenSnake = [];
+    greenSnake.push(object2);
 
     document.addEventListener('keydown', function(event) {
-        if(event.keyCode == 37) {
+        if(event.keyCode == 65) {
             keyCode = event.keyCode;
         }
-        else if(event.keyCode == 39) {
+        else if(event.keyCode == 68) {
         keyCode = event.keyCode;
         }
-      else if(event.keyCode == 38) {
+      else if(event.keyCode == 87) {
         keyCode = event.keyCode;
         }
-      else if(event.keyCode == 40) {
+      else if(event.keyCode == 83) {
             keyCode = event.keyCode;
         }
       else {
@@ -63,16 +67,16 @@
       ctx.strokeStyle='#9C27B0';
       ctx.lineWidth=5;
       ctx.moveTo(x,y);
-      if(keyCode == 37) {
+      if(keyCode == 65) {
         x = x-unit;
         }
-      else if(keyCode == 39) {
+      else if(keyCode == 68) {
         x = x+unit;
       }
-      else if(keyCode == 38) {
+      else if(keyCode == 87) {
         y = y-unit;
       }
-      else if(keyCode == 40) {
+      else if(keyCode == 83) {
         y = y + unit;
       }
       ctx.lineTo(x,y);
@@ -82,44 +86,70 @@
       ctx.strokeStyle='#69F0AE';
       ctx.lineWidth=5;
       ctx.moveTo(x2,y2);
-      if(keyCode2 == 65) {
+      if(keyCode2 == 37) {
             x2 = x2-unit;
         }
-        else if(keyCode2 == 83) {
+        else if(keyCode2 == 39) {
         x2 = x2+unit;
         }
-      else if(keyCode2 == 87) {
+      else if(keyCode2 == 38) {
         y2 = y2-unit;
         }
-      else if(keyCode2 == 90) {
+      else if(keyCode2 == 40) {
             y2 = y2 + unit;
         }
       ctx.lineTo(x2,y2);
       ctx.stroke();
 
-      var searchedObject = allObjects.filter(function ( searchedObject ) {
-        return (searchedObject.x === x && searchedObject.y === y) || (searchedObject.x === x2 && searchedObject.y === y2);
+      //eat self?
+      var purpleEatSelf = purpleSnake.filter(function ( coordinate ) {
+        return (coordinate.x === x && coordinate.y === y);
       })[0];
-      if(searchedObject != undefined){
-        alert('Game over!');
+      var greenEatSelf = greenSnake.filter(function ( coordinate ) {
+        return (coordinate.x === x2 && coordinate.y === y2);
+      })[0];
+
+      if(purpleEatSelf != undefined){
+        alert('Player 2 wins!');
+        clearInterval(startGame);
+      }
+      if(greenEatSelf != undefined){
+        alert('Player 1 wins!');
         clearInterval(startGame);
       }
 
+      //collision
+      var purpleEatGreen = purpleSnake.filter(function ( coordinate ) {
+        return (coordinate.x === x2 && coordinate.y === y2);
+      })[0];
+      var greenEatPurple = greenSnake.filter(function ( coordinate ) {
+        return (coordinate.x === x && coordinate.y === y);
+      })[0];
+
+      if(purpleEatGreen != undefined){
+        alert('Player 2 wins!');
+        clearInterval(startGame);
+      }
+      if(greenEatPurple != undefined){
+        alert('Player 1 wins!');
+        clearInterval(startGame);
+      }
+
+      //hits canvas margins
       if((x == 0) || (x == 500) || (y == 0) || (y == 500)){
           alert('Player 2 wins!');
           clearInterval(startGame);
       }
-
       if((x2 == 0) || (x2 == 500) || (y2 == 0) || (y2 == 500)){
         alert('Player 1 wins!');
         clearInterval(startGame);
       }
 
       var object = {x:x, y:y};
-      allObjects.push(object);
+      purpleSnake.push(object);
 
       var object2 = {x:x2, y:y2};
-      allObjects.push(object2);
+      greenSnake.push(object2);
 
       }, 100);
 
