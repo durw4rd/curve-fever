@@ -155,9 +155,6 @@ class App extends React.Component {
             <div style={infoStyle}>Yo, {this.state.playerTwo}! Your keys are: <i style={iconStyle4} className="material-icons">S A D W</i>.
             <RaisedButton onClick={this.clearPlayerTwo.bind(this)} label="Log Out" primary={true} style={buttonStyle}/> </div>
           </div>}
-
-        <CanvasComponent />
-
       </div>
     );
   }
