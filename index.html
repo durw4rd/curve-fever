@@ -37,12 +37,12 @@
     //ctx2.moveTo(x2,y2);
 
     var object = {x:x, y:y};
-    var allObjects = [];
-    allObjects.push(object);
+    var purpleSnake = [];
+    purpleSnake.push(object);
 
     var object2 = {x:x2, y:y2};
-    var allObjects2 = [];
-    allObjects2.push(object2);
+    var greenSnake = [];
+    greenSnake.push(object2);
 
     document.addEventListener('keydown', function(event) {
         if(event.keyCode == 65) {
@@ -101,23 +101,41 @@
       ctx.lineTo(x2,y2);
       ctx.stroke();
 
-      var searchedObject = allObjects.filter(function ( searchedObject ) {
-        return (searchedObject.x === x && searchedObject.y === y);
+      //eat self?
+      var purpleEatSelf = purpleSnake.filter(function ( coordinate ) {
+        return (coordinate.x === x && coordinate.y === y);
       })[0];
-      var searchedObject2 = allObjects2.filter(function ( searchedObject2 ) {
-        return (searchedObject2.x === x2 && searchedObject2.y === y2);
+      var greenEatSelf = greenSnake.filter(function ( coordinate ) {
+        return (coordinate.x === x2 && coordinate.y === y2);
       })[0];
 
-      if(searchedObject != undefined && searchedObject == searchedObject){
+      if(purpleEatSelf != undefined){
         alert('Player 2 wins!');
         clearInterval(startGame);
       }
-      if(searchedObject2 != undefined && searchedObject2 == searchedObject2){
+      if(greenEatSelf != undefined){
         alert('Player 1 wins!');
         clearInterval(startGame);
       }
 
+      //collision
+      var purpleEatGreen = purpleSnake.filter(function ( coordinate ) {
+        return (coordinate.x === x2 && coordinate.y === y2);
+      })[0];
+      var greenEatPurple = greenSnake.filter(function ( coordinate ) {
+        return (coordinate.x === x && coordinate.y === y);
+      })[0];
 
+      if(purpleEatGreen != undefined){
+        alert('Player 2 wins!');
+        clearInterval(startGame);
+      }
+      if(greenEatPurple != undefined){
+        alert('Player 1 wins!');
+        clearInterval(startGame);
+      }
+
+      //hits canvas margins
       if((x == 0) || (x == 500) || (y == 0) || (y == 500)){
           alert('Player 2 wins!');
           clearInterval(startGame);
@@ -128,10 +146,10 @@
       }
 
       var object = {x:x, y:y};
-      allObjects.push(object);
+      purpleSnake.push(object);
 
       var object2 = {x:x2, y:y2};
-      allObjects2.push(object2);
+      greenSnake.push(object2);
 
       }, 100);
 
