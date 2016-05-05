@@ -57,12 +57,12 @@ const buttonStyle = {
 
 const startStyle = {
  verticalAlign: "middle",
- width: "150px",
- height: "50px",
+ width: "100px",
+ height: "30px",
 };
 
 const startBoxStyle = {
-  width: "150px",
+  width: "100px",
   margin: "auto",
   marginBottom: "20px",
   border: "dashed 3px #9C27B0"

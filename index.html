@@ -13,11 +13,36 @@
         display: block;
         box-shadow: 2px 2px 15px #757575;
       }
+
+      #startBtn {
+        width: 100px;
+        margin: 15px;
+        padding: 5px;
+      }
+
+      .stats {
+        font-family: "Helvetica";
+        text-align: center;
+      }
+
+      .center {
+        width: 100px;
+        margin: auto;
+      }
     </style>
+
   </head>
   <body>
     <div id="root"></div>
-    <canvas id="myCanvas" width="500" height="500" style="border:1px solid #d3d3d3;"></canvas>
+      <div class="center">
+        <button id="startBtn" type="button">Start new game!</button>
+      </div>
+      <canvas id="myCanvas" width="500" height="500" style="border:1px solid #d3d3d3;"></canvas>
+      <div class="stats">
+        <h2>Purple Points: <span id="purplePoints">0</span> |
+        Green Points: <span id="greenPoints">0</span></h2>
+      </div>
+
     <script src="/static/bundle.js"></script>
     <script>
     var c = document.getElementById("myCanvas");
@@ -28,13 +53,10 @@
     var keyCode = 68;
     var x = 5;
     var y = 250;
-    //ctx.moveTo(x,y);
 
-    //65 left    83 right   87 up     90 down
     var keyCode2 = 37;
     var x2 = 495;
     var y2 = 250;
-    //ctx2.moveTo(x2,y2);
 
     var object = {x:x, y:y};
     var purpleSnake = [];
@@ -45,24 +67,26 @@
     greenSnake.push(object2);
 
     document.addEventListener('keydown', function(event) {
-        if(event.keyCode == 65) {
-            keyCode = event.keyCode;
-        }
-        else if(event.keyCode == 68) {
+      if(event.keyCode == 65) {
         keyCode = event.keyCode;
-        }
+      }
+      else if(event.keyCode == 68) {
+        keyCode = event.keyCode;
+      }
       else if(event.keyCode == 87) {
         keyCode = event.keyCode;
-        }
+      }
       else if(event.keyCode == 83) {
-            keyCode = event.keyCode;
-        }
+        keyCode = event.keyCode;
+      }
       else {
         keyCode2 = event.keyCode;
       }
     });
 
-    var startGame = setInterval(function() {
+    var gameInterval = setInterval(function() { startGame()}, 100 );
+
+    function startGame() {
       ctx.beginPath();
       ctx.strokeStyle='#9C27B0';
       ctx.lineWidth=5;
@@ -87,21 +111,34 @@
       ctx.lineWidth=5;
       ctx.moveTo(x2,y2);
       if(keyCode2 == 37) {
-            x2 = x2-unit;
-        }
-        else if(keyCode2 == 39) {
+        x2 = x2-unit;
+      }
+      else if(keyCode2 == 39) {
         x2 = x2+unit;
-        }
+      }
       else if(keyCode2 == 38) {
         y2 = y2-unit;
-        }
+      }
       else if(keyCode2 == 40) {
-            y2 = y2 + unit;
-        }
+        y2 = y2 + unit;
+      }
       ctx.lineTo(x2,y2);
       ctx.stroke();
 
-      //eat self?
+      //update counter functions
+      function updatePurpleCounter() {
+        purpleCounter++;
+        var displayPurpleCounter = document.getElementById("purple");
+        displayPurpleCounter.innerHTML = purpleCounter;
+      }
+
+      function updateGreenCounter() {
+        greenCounter++;
+        var displayGreenCounter = document.getElementById("green");
+        displayGreenCounter.innerHTML = greenCounter;
+      }
+
+      //eat self
       var purpleEatSelf = purpleSnake.filter(function ( coordinate ) {
         return (coordinate.x === x && coordinate.y === y);
       })[0];
@@ -111,11 +148,18 @@
 
       if(purpleEatSelf != undefined){
         alert('Player 2 wins!');
-        clearInterval(startGame);
+        clearInterval(gameInterval);
+        updateGreenCounter();
+        ctx.clearRect(0, 0, 500, 500);
+        setInterval(function() { startGame()}, 100 );
+
       }
       if(greenEatSelf != undefined){
-        alert('Player 1 wins!');
-        clearInterval(startGame);
+        // alert('Player 1 wins!');
+        clearInterval(gameInterval);
+        updatePurpleCounter();
+        ctx.clearRect(0, 0, 500, 500);
+        setInterval(function() { startGame()}, 100 );
       }
 
       //collision
@@ -127,22 +171,34 @@
       })[0];
 
       if(purpleEatGreen != undefined){
-        alert('Player 2 wins!');
-        clearInterval(startGame);
+        // alert('Player 2 wins!');
+        clearInterval(gameInterval);
+        updateGreenCounter();
+        ctx.clearRect(0, 0, 500, 500);
+        setInterval(function() { startGame()}, 100 );
       }
       if(greenEatPurple != undefined){
-        alert('Player 1 wins!');
-        clearInterval(startGame);
+        // alert('Player 1 wins!');
+        clearInterval(gameInterval);
+        updatePurpleCounter();
+        ctx.clearRect(0, 0, 500, 500);
+        setInterval(function() { startGame()}, 100 );
       }
 
       //hits canvas margins
       if((x == 0) || (x == 500) || (y == 0) || (y == 500)){
-          alert('Player 2 wins!');
-          clearInterval(startGame);
+        // alert('Player 2 wins!');
+        clearInterval(gameInterval);
+        updateGreenCounter();
+        ctx.clearRect(0, 0, 500, 500);
+        setInterval(function() { startGame()}, 100 );
       }
       if((x2 == 0) || (x2 == 500) || (y2 == 0) || (y2 == 500)){
-        alert('Player 1 wins!');
-        clearInterval(startGame);
+        // alert('Player 1 wins!');
+        clearInterval(gameInterval);
+        updatePurpleCounter();
+        ctx.clearRect(0, 0, 500, 500);
+        setInterval(function() { startGame()}, 100 );
       }
 
       var object = {x:x, y:y};
@@ -151,7 +207,7 @@
       var object2 = {x:x2, y:y2};
       greenSnake.push(object2);
 
-      }, 100);
+      }
 
     </script>
   </body>

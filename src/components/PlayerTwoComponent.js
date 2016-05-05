@@ -2,7 +2,8 @@ import React from 'react';
 import RaisedButton from 'material-ui/lib/raised-button';
 
 const buttonStyle = {
- margin: 12,
+ margin: 5,
+ marginLeft: 15,
  verticalAlign: "middle"
 };
 
@@ -22,7 +23,7 @@ const p2Style = {
 }
 
 const pad = {
-  padding: "15px"
+  padding: "5px"
 }
 
 class PlayerTwoComponent extends React.Component {
